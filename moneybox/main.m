@@ -1,9 +1,9 @@
 //
 //  main.m
-//  moneybox
+//  MolijieIos
 //
-//  Created by yexifeng on 16/10/4.
-//  Copyright © 2016年 yexifeng. All rights reserved.
+//  Created by yexifeng on 15/12/3.
+//  Copyright © 2015年 moregood. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
