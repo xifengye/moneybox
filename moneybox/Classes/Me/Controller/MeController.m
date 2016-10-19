@@ -71,7 +71,7 @@
             cell.imageView.image = [UIImage imageNamed:@"ico_wallet"];
             cell.textLabel.text = @"我的钱包";
         } whenSelected:^(NSIndexPath *indexPath) {
-            WalletController* controller = [[WalletController alloc]init];
+            WalletController* controller = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"WalletController"];
             [blockSelf.navigationController pushViewController:controller animated:YES];
             
         }];
@@ -80,7 +80,7 @@
             cell.imageView.image = [UIImage imageNamed:@"ico_proxy"];
             cell.textLabel.text = @"申请代理";
         } whenSelected:^(NSIndexPath *indexPath) {
-            ProxyController* controller = [[ProxyController alloc]init];
+            ProxyController* controller = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ProxyController"];
             [blockSelf.navigationController pushViewController:controller animated:YES];
             
         }];

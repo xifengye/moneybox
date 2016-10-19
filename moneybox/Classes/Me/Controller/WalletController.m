@@ -11,92 +11,96 @@
 #import "AppDataTool.h"
 #import "MLJConfig.h"
 #import "MBProgressHUD+MJ.h"
-#import <CoreLocation/CoreLocation.h>
+#import "UIImageView+WebCache.h"
+#import "MJRefresh.h"
+#import "WalletRecord.h"
 
 
-@interface WalletController()<CLLocationManagerDelegate>{
-    NSString* _province ;
-    NSString* _city ;
-    NSString* _district;
-    CLLocationManager *_locationManager;
-}
+@interface WalletController()<MJRefreshBaseViewDelegate>
+@property(nonatomic,strong)NSMutableArray* bankLogs;
+@property(nonatomic,strong)MJRefreshFooterView* footerView;
 @end
 
-@implementation WalletController
+
+@implementation WalletController{
+    int _pageIndex;
+    ArrayResultBlock _bankLogResult;
+
+}
 
 -(void)viewDidLoad{
     [super viewDidLoad];
     self.title = @"我的钱包";
-    [self initializeLocationService];
+    [self initView];
+    [self initData];
+}
+
+-(void)initView{
+    [self.btnTakeCash setTitleColor:MBBLUE_COLOR forState:UIControlStateNormal];
+    [self.btnTakeCash.layer setBorderWidth:2.0f];
+    CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateDeviceRGB();
+    CGColorRef color = CGColorCreate(colorSpaceRef, (CGFloat[]){0,149.0/255,242.0/255,1});
+    [self.btnTakeCash.layer setBorderColor:color];
+    
+    MJRefreshFooterView* footerView = [MJRefreshFooterView footer];
+    footerView.scrollView = self.tableView;
+    footerView.delegate = self;
+    footerView.tag = 2;
+    self.footerView = footerView;
+   
+
+}
+
+-(void)initData{
+    _pageIndex = 1;
+    _bankLogs = [NSMutableArray array];
+    __block WalletController* blockSelf = self;
+    _bankLogResult = ^(NSArray *result) {
+        if([blockSelf.footerView isRefreshing]){
+            [blockSelf.footerView endRefreshing];
+        }
+        [blockSelf.bankLogs addObjectsFromArray:result];
+        [blockSelf.tableView reloadData];
+    };
+    [[AppDataMemory instance] getMbUser:^(MBUser *mbUser) {
+        self.nameView.text = [NSString stringWithFormat:@"%@的余额",mbUser.NickName];
+        self.blanceView.text = [NSString stringWithFormat:@"%.2f元",mbUser.Bank];
+        self.alreadyTakeCashView.text = [NSString stringWithFormat:@"累计已提现%.2f元",mbUser.S_Money];
+        [self.iconView setImageWithURL:[NSURL URLWithString:mbUser.HeadPicUrl]];
+         [self.footerView beginRefreshing];
+    }];
+
+}
+
+-(void)refreshViewBeginRefreshing:(MJRefreshBaseView *)refreshView{
+    _pageIndex++;
+    [self requestBankLog];
 }
 
 
-
-
--(void)invoke{
-    }
-
-- (IBAction)didLocate:(id)sender {
-    // 开始定位
-     [_locationManager startUpdatingLocation];
-}
-
-
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
-{
-    // 获取当前所在的城市名
-    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-    //根据经纬度反向地理编译出地址信息
-    [geocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *array, NSError *error){
-        if (array.count > 0){
-            CLPlacemark *placemark = [array objectAtIndex:0];
-            NSDictionary* elements = placemark.addressDictionary;
-            NSString* city = elements[@"City"];
-            if (!city) {
-                //四大直辖市的城市信息无法通过locality获得，只能通过获取省份的方法来获得（如果city为空，则可知为直辖市）
-                city = placemark.administrativeArea;
-            }
-            [self setPCD:elements[@"State"] city:city district:elements[@"SubLocality"]];
-            self.tfDetail.text = [NSString stringWithFormat:@"%@%@",elements[@"Thoroughfare"],elements[@"SubThoroughfare"]];
-            
-        }
-        else if (error == nil && [array count] == 0)
-        {
-            NSLog(@"No results were returned.");
-        }
-        else if (error != nil)
-        {
-            NSLog(@"An error occurred = %@", error);
+-(void)requestBankLog{
+    [AppDataTool requestBankLog:_pageIndex response:_bankLogResult onError:^(int errorCode, NSString *msg) {
+        if([self.footerView isRefreshing]){
+            [self.footerView endRefreshing];
         }
     }];
-    //系统会一直更新数据，直到选择停止更新，因为我们只需要获得一次经纬度即可，所以获取之后就停止更新
-    [manager stopUpdatingLocation];
-}
-
--(void)setPCD:(NSString*)province city:(NSString*)city district:(NSString*)district{
-    _province =province;
-    _city = city;
-    _district = district;
-    [_btnPCD setTitle:[NSString stringWithFormat:@"%@%@%@",province,city,district] forState:UIControlStateNormal];
-}
-
--(void)initializeLocationService {
-    // 初始化定位管理器
-    _locationManager = [[CLLocationManager alloc] init];
-    // 设置代理
-    _locationManager.delegate = self;
-    // 设置定位精确度到米
-    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    // 设置过滤器为无
-    _locationManager.distanceFilter = kCLDistanceFilterNone;
-    // 开始定位
-    // 取得定位权限，有两个方法，取决于你的定位使用情况
-    // 一个是requestAlwaysAuthorization，一个是requestWhenInUseAuthorization
-    [_locationManager requestAlwaysAuthorization];//这句话ios8以上版本使用。
-   
 }
 
 
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.bankLogs.count;
+}
 
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString* ID = @"cityCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    if (!cell) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
+    }
+    WalletRecord* address = [self.bankLogs objectAtIndex:indexPath.row];
+    cell.textLabel.text= [NSString stringWithFormat:@"%.2f",address.Balance];
+    cell.detailTextLabel.text = address.CreatedDT;
+    return cell;
+}
 
 @end

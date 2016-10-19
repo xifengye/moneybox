@@ -9,12 +9,11 @@
 #import "BaseViewController.h"
 
 @interface WalletController : BaseViewController
-@property (weak, nonatomic) IBOutlet UITextField *tfName;
-@property (weak, nonatomic) IBOutlet UITextField *tfMobile;
-@property (weak, nonatomic) IBOutlet UITextField *tfPhone;
-@property (weak, nonatomic) IBOutlet UIButton *btnPCD;
-@property (weak, nonatomic) IBOutlet UITextField *tfDetail;
-@property (weak, nonatomic) IBOutlet UITextField *tfPostCode;
-@property (weak, nonatomic) IBOutlet UISwitch *btnDefault;
+@property (weak, nonatomic) IBOutlet UILabel *nameView;
+@property (weak, nonatomic) IBOutlet UILabel *blanceView;
+@property (weak, nonatomic) IBOutlet UIImageView *iconView;
+@property (weak, nonatomic) IBOutlet UIButton *btnTakeCash;
+@property (weak, nonatomic) IBOutlet UILabel *alreadyTakeCashView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

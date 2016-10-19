@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		EB0405091DA4858B00CB027C /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB0405041DA4858B00CB027C /* libWeChatSDK.a */; };
 		EB04050A1DA4858B00CB027C /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = EB0405051DA4858B00CB027C /* README.txt */; };
+		EB0F9C521DB5016700CBF52F /* NetAddressController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB0F9C511DB5016700CBF52F /* NetAddressController.m */; };
+		EB0F9C551DB5083700CBF52F /* NetAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = EB0F9C541DB5083700CBF52F /* NetAddress.m */; };
+		EB0F9C581DB52B6700CBF52F /* WalletRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = EB0F9C571DB52B6700CBF52F /* WalletRecord.m */; };
 		EB12FEE31DA55C580025E860 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EB12FEE21DA55C580025E860 /* libsqlite3.tbd */; };
 		EB12FEE51DA55C860025E860 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB12FEE41DA55C860025E860 /* Security.framework */; };
 		EB12FEE71DA55C8E0025E860 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB12FEE61DA55C8E0025E860 /* CoreTelephony.framework */; };
@@ -17,6 +20,8 @@
 		EB12FEED1DA55CB30025E860 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB12FEEC1DA55CB20025E860 /* SystemConfiguration.framework */; };
 		EB12FEEF1DA55D3D0025E860 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EB12FEEE1DA55D3D0025E860 /* libz.tbd */; };
 		EB12FEF11DA55D9F0025E860 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EB12FEF01DA55D9F0025E860 /* libc++.tbd */; };
+		EB4D2F011DB6EFF60036E7DB /* AddressSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4D2F001DB6EFF60036E7DB /* AddressSelectController.m */; };
+		EB4D2F031DB6F6CD0036E7DB /* address.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB4D2F021DB6F6CD0036E7DB /* address.plist */; };
 		EB6109041DB362F800869F35 /* UIButton+MG.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6109031DB362F800869F35 /* UIButton+MG.m */; };
 		EB6109071DB3B38B00869F35 /* MBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6109061DB3B38B00869F35 /* MBUser.m */; };
 		EB7E4DEB1DB49215003C6B75 /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7E4DEA1DB49215003C6B75 /* Device.m */; };
@@ -148,6 +153,12 @@
 		EB0405061DA4858B00CB027C /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
 		EB0405071DA4858B00CB027C /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		EB0405081DA4858B00CB027C /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		EB0F9C501DB5016700CBF52F /* NetAddressController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetAddressController.h; sourceTree = "<group>"; };
+		EB0F9C511DB5016700CBF52F /* NetAddressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetAddressController.m; sourceTree = "<group>"; };
+		EB0F9C531DB5083700CBF52F /* NetAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetAddress.h; sourceTree = "<group>"; };
+		EB0F9C541DB5083700CBF52F /* NetAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetAddress.m; sourceTree = "<group>"; };
+		EB0F9C561DB52B6700CBF52F /* WalletRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalletRecord.h; sourceTree = "<group>"; };
+		EB0F9C571DB52B6700CBF52F /* WalletRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WalletRecord.m; sourceTree = "<group>"; };
 		EB12FEE21DA55C580025E860 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		EB12FEE41DA55C860025E860 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		EB12FEE61DA55C8E0025E860 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -156,6 +167,9 @@
 		EB12FEEC1DA55CB20025E860 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		EB12FEEE1DA55D3D0025E860 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		EB12FEF01DA55D9F0025E860 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		EB4D2EFF1DB6EFF60036E7DB /* AddressSelectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressSelectController.h; sourceTree = "<group>"; };
+		EB4D2F001DB6EFF60036E7DB /* AddressSelectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressSelectController.m; sourceTree = "<group>"; };
+		EB4D2F021DB6F6CD0036E7DB /* address.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = address.plist; sourceTree = "<group>"; };
 		EB6109021DB362F800869F35 /* UIButton+MG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+MG.h"; sourceTree = "<group>"; };
 		EB6109031DB362F800869F35 /* UIButton+MG.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+MG.m"; sourceTree = "<group>"; };
 		EB6109051DB3B38B00869F35 /* MBUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBUser.h; sourceTree = "<group>"; };
@@ -487,6 +501,7 @@
 		EBD973241DA3AC5E00A1056E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				EB4D2F021DB6F6CD0036E7DB /* address.plist */,
 				EBD973421DA3B33000A1056E /* main.m */,
 			);
 			name = "Supporting Files";
@@ -619,6 +634,8 @@
 		EBD973901DA3C0E100A1056E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				EB4D2EFF1DB6EFF60036E7DB /* AddressSelectController.h */,
+				EB4D2F001DB6EFF60036E7DB /* AddressSelectController.m */,
 				EBD973951DA3C0E100A1056E /* DevicesController.h */,
 				EBD973961DA3C0E100A1056E /* DevicesController.m */,
 				EBD973971DA3C0E100A1056E /* WalletController.h */,
@@ -631,6 +648,8 @@
 				EBD973A01DA3C0E100A1056E /* ProxyController.m */,
 				EBD973A31DA3C0E100A1056E /* SettingController.h */,
 				EBD973A41DA3C0E100A1056E /* SettingController.m */,
+				EB0F9C501DB5016700CBF52F /* NetAddressController.h */,
+				EB0F9C511DB5016700CBF52F /* NetAddressController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -640,6 +659,10 @@
 			children = (
 				EB7E4DE91DB49215003C6B75 /* Device.h */,
 				EB7E4DEA1DB49215003C6B75 /* Device.m */,
+				EB0F9C531DB5083700CBF52F /* NetAddress.h */,
+				EB0F9C541DB5083700CBF52F /* NetAddress.m */,
+				EB0F9C561DB52B6700CBF52F /* WalletRecord.h */,
+				EB0F9C571DB52B6700CBF52F /* WalletRecord.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1124,6 +1147,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBD973371DA3AC5E00A1056E /* LaunchScreen.storyboard in Resources */,
+				EB4D2F031DB6F6CD0036E7DB /* address.plist in Resources */,
 				EBD975A01DA3C0E100A1056E /* MBProgressHUD.bundle in Resources */,
 				EBD975B21DA3C0E100A1056E /* MJRefresh.bundle in Resources */,
 				EB04050A1DA4858B00CB027C /* README.txt in Resources */,
@@ -1149,6 +1173,8 @@
 				EBD975CF1DA3C0E100A1056E /* ActiveAccount.m in Sources */,
 				EBD975921DA3C0E100A1056E /* DAPageIndicatorView.m in Sources */,
 				EBD975A11DA3C0E100A1056E /* MBProgressHUD.m in Sources */,
+				EB0F9C581DB52B6700CBF52F /* WalletRecord.m in Sources */,
+				EB0F9C551DB5083700CBF52F /* NetAddress.m in Sources */,
 				EBD975C81DA3C0E100A1056E /* SDWebImagePrefetcher.m in Sources */,
 				EBD975561DA3C0E100A1056E /* MGNavigationController.m in Sources */,
 				EBD9758A1DA3C0E100A1056E /* AFHTTPSessionManager.m in Sources */,
@@ -1165,10 +1191,12 @@
 				EBD975B61DA3C0E100A1056E /* MJRefreshHeaderView.m in Sources */,
 				EBD975631DA3C0E100A1056E /* MeController.m in Sources */,
 				EBD975EA1DA3C0E100A1056E /* IndexBlock.m in Sources */,
+				EB4D2F011DB6EFF60036E7DB /* AddressSelectController.m in Sources */,
 				EB7E4DEB1DB49215003C6B75 /* Device.m in Sources */,
 				EBD975BF1DA3C0E100A1056E /* MKAnnotationView+WebCache.m in Sources */,
 				EBD975E81DA3C0E100A1056E /* CataDetail.m in Sources */,
 				EBD975DD1DA3C0E100A1056E /* ShakeController.m in Sources */,
+				EB0F9C521DB5016700CBF52F /* NetAddressController.m in Sources */,
 				EBD975B41DA3C0E100A1056E /* MJRefreshConst.m in Sources */,
 				EBD975D81DA3C0E100A1056E /* AppDataTool.m in Sources */,
 				EBD975931DA3C0E100A1056E /* DAPagesContainer.m in Sources */,

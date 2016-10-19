@@ -7,8 +7,9 @@
 //
 
 #import "BaseViewController.h"
+#import "NetAddressController.h"
 
-@interface DevicesController : BaseViewController
+@interface DevicesController : BaseViewController<NetAddressSelectedDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *IconView;
 @property (weak, nonatomic) IBOutlet UILabel *nameView;
 @property (weak, nonatomic) IBOutlet UILabel *diviceNumberView;
@@ -18,5 +19,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnAddDevice;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
+
 
 @end

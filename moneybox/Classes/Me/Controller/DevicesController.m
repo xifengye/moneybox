@@ -13,9 +13,14 @@
 #import "AppDataTool.h"
 #import "MBProgressHUD+MJ.h"
 #import "UIImageView+WebCache.h"
+#import "MBProgressHUD+MJ.h"
 
 
 @implementation DevicesController
+{
+    NSString* scanResult;
+    int areaId;
+}
 -(void)viewDidLoad{
     self.title = @"我的设备";
     [super viewDidLoad];
@@ -47,8 +52,43 @@
             
         }
     } onError:^(int code, NSString *msg) {
-        
+        [MBProgressHUD showError:msg];
     }];
+}
+
+-(void)didScanResult:(NSString*)result{
+    scanResult = result;
+    [self selectArea];
+}
+
+-(void)selectArea{
+    NetAddressController* controller = [[NetAddressController alloc] init];
+    controller.delegate = self;
+    controller.parentId = 0;
+    [self.navigationController pushViewController:controller animated:true];
+}
+
+-(void)didAddressSelected:(int)aid{
+    areaId = aid;
+    [self.navigationController popToViewController:self animated:true];
+    [self performSelector:@selector(toActive) withObject:nil afterDelay:1.0f];
+}
+
+-(void)toActive{
+    [AppDataTool activeDevice:@"vvenvp" flag:scanResult area:areaId response:^(NSString * result){
+        
+    } onError:^(int errorCode, NSString * msg) {
+        [MBProgressHUD showError:msg];
+    }];
+
+}
+
+- (IBAction)didAddDevice:(id)sender {
+    [self didScanResult:@"80-80-34-ab-50"];
+}
+
+
+- (IBAction)didSearchDevice:(id)sender {
 }
 
 @end

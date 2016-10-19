@@ -19,6 +19,7 @@ typedef void(^EmptyResultBlock)();
 typedef void(^ArrayResultBlock)(NSArray*);
 typedef void(^BoolResultBlock)(BOOL);
 typedef void(^UserResultBlock)(User*);
+typedef void(^StringResultBlock)(NSString*);
 typedef void(^MBUserResultBlock)(MBUser*);
 
 
@@ -29,5 +30,13 @@ typedef void(^MBUserResultBlock)(MBUser*);
 +(void)requestUserInfo:(UserResultBlock)onResponse onError:(ErrorBlock)error;
 +(void)requestMBUserInfo:(MBUserResultBlock)onResponse onError:(ErrorBlock)error;
 +(void)requestDeviceList:(ArrayResultBlock)onResponse onError:(ErrorBlock)error;
++(void)requestNetAddress:(int)parentId response:(ArrayResultBlock)onResponse onError:(ErrorBlock)error;
+
++(void)activeDevice:(NSString*)inviteCode flag:(NSString*)flag area:(int)area response:(StringResultBlock)onResponse onError:(ErrorBlock)error;
+
++(void)requestBankLog:(int)pageIndex response:(ArrayResultBlock)onResponse onError:(ErrorBlock)error;
+
+
++(void)applyingAgency:(NSDictionary*)param response:(BoolResultBlock)onResponse onError:(ErrorBlock)error;
 
 @end

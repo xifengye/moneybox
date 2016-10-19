@@ -20,4 +20,6 @@
 
 +(void)MLJGET:(NSString*)url params:(id)params hasAES:(BOOL)aes success:(void(^)(MLJResponse* response))success failure:(void(^)(NSError* error))failure;
 +(void)MLJPOST:(NSString*)url params:(id)params hasAES:(BOOL)aes success:(void(^)(MLJResponse* response))success failure:(void(^)(NSError* error))failure;
+
++(void)GET:(NSString *)url params:(id)params hasAES:(BOOL)aes success:(void (^)(id))success failure:(void (^)(NSError *))failure;
 @end

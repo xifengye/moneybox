@@ -100,6 +100,17 @@
     }];
 }
 
++(void)GET:(NSString *)url params:(id)params hasAES:(BOOL)aes success:(void (^)(id))success failure:(void (^)(NSError *))failure{
+    if(aes){
+        params = [HttpTool aesParams:params];
+    }
+    [HttpTool GET:url params:params success:^(id response) {
+        success(response);
+    } failure:^(NSError *error) {
+        failure(error);
+    }];
+}
+
 +(void)MLJPOST:(NSString *)url params:(id)params hasAES:(BOOL)aes success:(void (^)(MLJResponse *))success failure:(void (^)(NSError *))failure{
     if(aes){
         params = [HttpTool aesParams:params];

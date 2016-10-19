@@ -16,4 +16,8 @@
 
 @implementation MLJResponse
 
+-(BOOL)hasError{
+    return _code!=100;
+}
+
 @end
