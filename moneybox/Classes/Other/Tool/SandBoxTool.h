@@ -11,12 +11,10 @@
 
 @interface SandBoxTool : NSObject
 
-+(Token*)appToken;
-+(void)saveAppToken:(Token*)token;
++(LoginToken*)wxLoginToken;
++(void)saveWxLoginToken:(LoginToken*)token;
 
-+(Token*)userToken;
-+(void)saveUserToken:(Token*)token;
-
++(void)saveWXRefreshToken:(LoginToken*)loginToken refreshToken:(RefreshToken*)refreshToken;
 
 +(void)saveUser:(User*)user;
 +(User*)user;

@@ -9,9 +9,8 @@
 #import "SandBoxTool.h"
 #import "AppDataMemory.h"
 
-#define appTokenFile [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"appToken.data"]
+#define wxTokenFile [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"appToken.data"]
 
-#define userTokenFile [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"userToken.data"]
 
 #define userFile [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"user.data"]
 
@@ -20,47 +19,29 @@
 
 @implementation SandBoxTool
 
-+(void)saveAppToken:(Token *)token{
++(void)saveWxLoginToken:(LoginToken *)token{
     if(token!=nil){
-        [AppDataMemory instance].appToken = token;
+        [AppDataMemory instance].wxLoginToken = token;
         NSDate* now = [NSDate date];
-        token.expireDate = [now dateByAddingTimeInterval:token.Expire];
-        [NSKeyedArchiver archiveRootObject:token toFile:appTokenFile];
+        token.accessTokenExpireDate = [now dateByAddingTimeInterval:token.expires_in];
+        token.refreshTokenExpireDate = [now dateByAddingTimeInterval:60*60*24*30-60];
+        [NSKeyedArchiver archiveRootObject:token toFile:wxTokenFile];
     }
 }
 
-+(Token *)appToken{
++(void)saveWXRefreshToken:(LoginToken *)loginToken refreshToken:(RefreshToken *)refreshToken{
     NSDate* now = [NSDate date];
-    Token* token = [NSKeyedUnarchiver unarchiveObjectWithFile:appTokenFile];
-    if([now compare:token.expireDate] == NSOrderedAscending){
-        [AppDataMemory instance].appToken = token;
-        return token;
-    }else{
-        return nil;
-    }
+    loginToken.access_token = refreshToken.access_token;
+    loginToken.refresh_token = refreshToken.refresh_token;
+    loginToken.accessTokenExpireDate = [now dateByAddingTimeInterval:refreshToken.expires_in];
+    [NSKeyedArchiver archiveRootObject:loginToken toFile:wxTokenFile];
 }
 
-+(void)saveUserToken:(Token *)token{
-    if(token!=nil){
-        [AppDataMemory instance].wxUser.userToken = token;
-        NSDate* now = [NSDate date];
-        token.expireDate = [now dateByAddingTimeInterval:token.Expire];
-        [NSKeyedArchiver archiveRootObject:token toFile:userTokenFile];
-    }
++(LoginToken *)wxLoginToken{
+    LoginToken* token = [NSKeyedUnarchiver unarchiveObjectWithFile:wxTokenFile];
+    return token;
 }
 
-+(Token *)userToken{
-    NSDate* now = [NSDate date];
-    Token* token = [NSKeyedUnarchiver unarchiveObjectWithFile:userTokenFile];
-    if([now compare:token.expireDate] == NSOrderedAscending){
-        User* user = [SandBoxTool user];
-        [[AppDataMemory instance].wxUser update:user];
-        [AppDataMemory instance].wxUser.userToken = token;
-        return token;
-    }else{
-        return nil;
-    }
-}
 
 +(void)saveUser:(User *)user{
     if(user!=nil){

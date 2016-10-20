@@ -40,6 +40,7 @@
 +(void)GET:(NSString *)url params:(id)params success:(void (^)(id))success failure:(void (^)(NSError *))failure {
     
     AFHTTPSessionManager* manager = AFManager;
+//    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     [manager GET:url parameters:params success:^(NSURLSessionDataTask *operation, id responseObject) {
         if(success){
             success(responseObject);
@@ -93,6 +94,10 @@
         params = [HttpTool aesParams:params];
     }
     [HttpTool GET:url params:params success:^(id response) {
+//        NSError *error;
+//        NSDictionary* dict = [NSJSONSerialization JSONObjectWithData:response
+//                                                             options:NSJSONReadingMutableContainers
+//                                                               error:&error];
         MLJResponse* r = [MLJResponse objectWithKeyValues:response];
         success(r);
     } failure:^(NSError *error) {
@@ -124,4 +129,6 @@
         failure(error);
     }];
 }
+
+
 @end

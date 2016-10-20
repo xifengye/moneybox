@@ -15,46 +15,54 @@
 #import "WalletRecord.h"
 
 @implementation AppDataTool
-+(void)requestAppToken:(TokenResultBlock)onResponse onError:(ErrorBlock)error{
-    
-//    NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:@"MoLiJieClientForAndroid",@"appid",@"18259181651",@"password",@"xx-xxx-xxxx",@"device_code", nil];
-    
-    NSString* pushToken = [[NSUserDefaults standardUserDefaults] objectForKey:PUSH_TOKEN_KEY];
-    if(!pushToken){
-        pushToken = @"";
-    }
-    NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:@"MoLiJieClientForIOS",@"appid",@"15005919722",@"password",pushToken,@"device_code", nil];
-    [HttpTool MLJPOST:@"http://112.124.61.35:9999/int/ios_api/AppAuthorize" params:dic hasAES:true success:^(MLJResponse *response) {
-        if(response.hasError){
-            NSLog(@"Error:%d",response.code);
-            error(response.code,response.msg);
-        }else{
-            Token* token = [Token objectWithKeyValues:response.data];
-            [SandBoxTool saveAppToken:token];
-            onResponse(token);
-        }
 
+
++(void)requestWxToken:(NSString*)code onResponse:(LoginTokenResultBlock)response onError:(ErrorBlock)error{
+    NSString* url = [NSString stringWithFormat:@"https://api.weixin.qq.com/sns/oauth2/access_token?appid=%@&secret=%@&code=%@&grant_type=authorization_code", WX_APP_ID,WX_APP_SECRET,code];
+    [HttpTool GET:url params:nil hasAES:true success:^(id result) {
+        NSError *error;
+        NSDictionary* dict = [NSJSONSerialization JSONObjectWithData:result
+                                                             options:NSJSONReadingMutableContainers
+                                                               error:&error];
+        response([LoginToken objectWithKeyValues:dict]);
     } failure:^(NSError *error) {
         NSLog(@"failure:%@",error);
     }];
+
+}
+
++(void)refreshWxToken:(NSString*)refreshToken onResponse:(TokenResultBlock)response onError:(ErrorBlock)error{
+    NSString* url = [NSString stringWithFormat:@"https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=%@&grant_type=refresh_token&refresh_token=%@",WX_APP_ID,refreshToken];
+//    [HttpTool GET:url params:nil hasAES:true success:^(id result) {
+//        response([RefreshToken objectWithKeyValues:result]);
+//    } failure:^(NSError *error) {
+//        NSLog(@"failure:%@",error);
+//    }];
+    NSData* result = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
+    NSError *err;
+    NSDictionary* dict = [NSJSONSerialization JSONObjectWithData:result options:NSJSONReadingMutableContainers
+                                                           error:&err];
+    response([RefreshToken objectWithKeyValues:dict]);
+
 }
 
 
-+(void)requestUserInfo:(UserResultBlock)onResponse onError:(ErrorBlock)error{
-    NSMutableDictionary* params = [NSMutableDictionary dictionary];
-    [HttpTool MLJPOST:@"http://112.124.61.35:9999/int/ios_api/LoadCurrentUserInfo" params:params hasAES:true success:^(MLJResponse *response) {
-        if(response.hasError){
-            NSLog(@"requestUserInfo Error:%lld",response.code);
-            error(response.code,response.msg);
-        }else{
-            NSLog(@"requestUserInfo resp:%@",response.data);
-            onResponse([User objectWithKeyValues:response.data]);
-        }
-        
-    } failure:^(NSError *error) {
-        NSLog(@"requestUserInfo failure:%@",error);
-    }];
-
++(void)requestWXUserInfo:(NSString*)token openId:(NSString*)openId onResponse:(UserResultBlock)response onError:(ErrorBlock)error{
+    NSString* url = [NSString stringWithFormat:@"https://api.weixin.qq.com/sns/userinfo?access_token=%@&openid=%@", token,openId];
+//    [HttpTool GET:url params:nil hasAES:true success:^(id result) {
+//        NSError *error;
+//        NSDictionary* dict = [NSJSONSerialization JSONObjectWithData:result
+//                                                             options:NSJSONReadingMutableContainers
+//                                                               error:&error];
+//        response([User objectWithKeyValues:dict]);
+//    } failure:^(NSError *error) {
+//        NSLog(@"failure:%@",error);
+//    }];
+    NSData* result = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
+    NSError *err;
+    NSDictionary* dict = [NSJSONSerialization JSONObjectWithData:result options:NSJSONReadingMutableContainers
+                                                                   error:&err];
+    response([User objectWithKeyValues:dict]);
 }
 
 +(void)requestMBUserInfo:(MBUserResultBlock)onResponse onError:(ErrorBlock)error{

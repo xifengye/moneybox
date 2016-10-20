@@ -16,6 +16,7 @@
 #import "MLJConfig.h"
 #import "UIImage+MG.h"
 #import "UIButton+MG.h"
+#import "AppDelegate.h"
 
 
 #define NumberOfPager   4
@@ -23,8 +24,13 @@
 
 @implementation LoginController
 
-- (void)viewDidLoad{
-    [super viewDidLoad];
+-(void)toMainController{
+    MainController* mainController = [[MainController alloc]init];
+    [self dismissViewControllerAnimated:true completion:nil];
+    [self presentViewController:mainController animated:true completion:nil];}
+
+-(void)toLoginView{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didWxLoginSuccess:) name:@"WX_RESULT" object:nil];
     UIScrollView* scrollView = [[UIScrollView alloc] init];
     scrollView.frame = self.view.bounds;
     scrollView.pagingEnabled = true;
@@ -56,9 +62,25 @@
     pageControl.frame = CGRectMake(0, scrollViewSize.height-20,scrollViewSize.width, 20);
     
     pageControl.numberOfPages = NumberOfPager;
-//    pageControl.backgroundColor = [UIColor grayColor];
+    //    pageControl.backgroundColor = [UIColor grayColor];
     [self.view addSubview:pageControl];
     self.pageControl = pageControl;
+}
+
+- (void)viewDidLoad{
+    [super viewDidLoad];
+    LoginToken* token = [SandBoxTool wxLoginToken];
+    NSDate* now = [NSDate date];
+    if(token && [now compare:token.refreshTokenExpireDate] == NSOrderedAscending){
+        [AppDataTool refreshWxToken:token.refresh_token onResponse:^(RefreshToken * refreshToken) {
+            [SandBoxTool saveWXRefreshToken:token refreshToken:refreshToken];
+            [self toMainController];
+        } onError:^(int errorCode, NSString *msg) {
+            [self toLoginView];
+        }];
+    }else{
+        [self toLoginView];
+    }
 }
 
 
@@ -74,14 +96,10 @@
     [self sendAuthRequest];
 }
 
--(void)goMain{
-    NSLog(@"goMain");
-    MainController* mainController = [[MainController alloc]init];
-    self.view.window.rootViewController = mainController;
-}
 
 - (void)dealloc{
     NSLog(@"dealloc");
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
@@ -90,22 +108,25 @@
     //构造SendAuthReq结构体
     SendAuthReq* req =[[SendAuthReq alloc ] init] ;
     req.scope = @"snsapi_userinfo" ;
-    req.state = @"123" ;
+    req.state = @"App" ;
+    req.openID = WX_APP_ID;
     //第三方向微信终端发送一个SendAuthReq消息结构
-    [WXApi sendAuthReq:req
-               viewController:self
-                     delegate:self];
+    [WXApi sendAuthReq:req viewController:self delegate:(AppDelegate*)[UIApplication sharedApplication].delegate];
 
 }
 
-#pragma mark - WXApiDelegate
-- (void)onResp:(BaseResp *)resp {
-    if ([resp isKindOfClass:[SendAuthResp class]]) {
-        NSLog(@"weiChatLoginResp=%@",resp);
+
+-(void)didWxLoginSuccess:(NSNotification*)notification{
+    SendAuthResp* resp = notification.object;
+    if(resp.errCode==0){
+        [AppDataTool requestWxToken:resp.code onResponse:^(LoginToken * token) {
+            [SandBoxTool saveWxLoginToken:token];
+            [self toMainController];
+        } onError:^(int errorCode, NSString *msg) {
+            
+        }];
     }
-}
-
-- (void)onReq:(BaseReq *)req {
+    NSLog(@"wxloginSuccess:%@",resp.code);
 }
 
 @end

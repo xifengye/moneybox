@@ -40,7 +40,11 @@
 
 
 -(void)requestData{
-    
+    [AppDataTool requestWXUserInfo:[AppDataMemory instance].wxLoginToken.access_token openId:[AppDataMemory instance].wxLoginToken.openid onResponse:^(User *user) {
+        [AppDataMemory instance].wxUser = user;
+    } onError:^(int errorCode, NSString *msg) {
+        
+    }];
 }
 
 

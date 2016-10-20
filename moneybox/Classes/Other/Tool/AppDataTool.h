@@ -7,13 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Token.h"
+#import "RefreshToken.h"
 #import "MLJResponse.h"
 #import "User.h"
 #import "MBUser.h"
 
 typedef void(^ErrorBlock)(int,NSString*);
-typedef void(^TokenResultBlock)(Token*);
+typedef void(^TokenResultBlock)(RefreshToken*);
+typedef void(^LoginTokenResultBlock)(LoginToken*);
 typedef void(^FloatResultBlock)(float);
 typedef void(^EmptyResultBlock)();
 typedef void(^ArrayResultBlock)(NSArray*);
@@ -25,9 +26,10 @@ typedef void(^MBUserResultBlock)(MBUser*);
 
 
 @interface AppDataTool : NSObject
-+(void)requestAppToken:(TokenResultBlock) onResponse onError:(ErrorBlock)error;
++(void)requestWxToken:(NSString*)code onResponse:(LoginTokenResultBlock)response onError:(ErrorBlock)error;
++(void)refreshWxToken:(NSString*)refreshToken onResponse:(TokenResultBlock) response onError:(ErrorBlock)error;
 
-+(void)requestUserInfo:(UserResultBlock)onResponse onError:(ErrorBlock)error;
++(void)requestWXUserInfo:(NSString*)token openId:(NSString*)openId onResponse:(UserResultBlock)response onError:(ErrorBlock)error;
 +(void)requestMBUserInfo:(MBUserResultBlock)onResponse onError:(ErrorBlock)error;
 +(void)requestDeviceList:(ArrayResultBlock)onResponse onError:(ErrorBlock)error;
 +(void)requestNetAddress:(int)parentId response:(ArrayResultBlock)onResponse onError:(ErrorBlock)error;

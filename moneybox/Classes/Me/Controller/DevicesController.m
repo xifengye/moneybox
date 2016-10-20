@@ -14,7 +14,7 @@
 #import "MBProgressHUD+MJ.h"
 #import "UIImageView+WebCache.h"
 #import "MBProgressHUD+MJ.h"
-
+#import "UIImageView+MG.h"
 
 @implementation DevicesController
 {
@@ -35,6 +35,7 @@
     [[AppDataMemory instance] getMbUser:^(MBUser *mbUser) {
         self.nameView.text = mbUser.NickName;
         [self.IconView setImageWithURL:[NSURL URLWithString:mbUser.HeadPicUrl]];
+        [self.IconView circle:MBBLUE_COLOR];
         [self requestDevices];
     }];
 }

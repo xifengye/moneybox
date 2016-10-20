@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "MainController.h"
 #import "LoginController.h"
-#import "Token.h"
+#import "RefreshToken.h"
 #import "SandBoxTool.h"
 #import "AppDataTool.h"
 #import "AppDataMemory.h"
@@ -25,39 +25,53 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//    if([SandBoxTool appToken]==nil){
-//        [self toLoginController];
-//    }else{
-//        [self onAppToken];
-//    }
-//
-//    [WXApi registerApp:@"wxf2038589c0b3c685" withDescription:@"demo 2.0"];
-    self.window.rootViewController = [[MainController alloc] init];
+    [WXApi registerApp:WX_APP_ID withDescription:@"weixin"];
+    LoginToken* token = [SandBoxTool wxLoginToken];
+    NSDate* now = [NSDate date];
+    if(token){
+        if([now compare:token.accessTokenExpireDate] == NSOrderedAscending){
+            [AppDataMemory instance].wxLoginToken = token;
+            [self toMainController];
+        }else{
+            [self toLoginController];
+        }
+        
+    }else{
+        [self toLoginController];
+    }
+    
     return YES;
 }
 
--(void)onAppToken{
-    NSLog(@"onAppToken=%@",[AppDataMemory instance].appToken.token);
-    Token* userToken = [SandBoxTool userToken];
-    if(userToken){//用户已登录
-        self.window.rootViewController = [[MainController alloc] init];
-    }else{//用户未登录
-        [self toLoginController];
-    }
-
+-(void)toMainController{
+    self.window.rootViewController = [[MainController alloc] init];
 }
 
+
 -(void)toLoginController{
-    UIViewController* loginController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginController"];
+    UIViewController* loginController = [[LoginController alloc] init];
     self.window.rootViewController = loginController;
 }
 
 
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-    return  [WXApi handleOpenURL:url delegate:self];
-}
+//- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+//    return  [WXApi handleOpenURL:url delegate:self];
+//}
+//
+//- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+//    return [WXApi handleOpenURL:url delegate:self];
+//}
 
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+-(BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options{
+    
+    /*! @brief 处理微信通过URL启动App时传递的数据
+     *
+     * 需要在 application:openURL:sourceApplication:annotation:或者application:handleOpenURL中调用。
+     * @param url 微信启动第三方应用时传递过来的URL
+     * @param delegate  WXApiDelegate对象，用来接收微信触发的消息。
+     * @return 成功返回YES，失败返回NO。
+     */
+    
     return [WXApi handleOpenURL:url delegate:self];
 }
 
@@ -89,12 +103,27 @@
 }
 
 
-// NOTE: 9.0以后使用新API接口
-- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options
-{
-    return YES;
+-(void) onResp:(BaseResp*)resp{
+    NSLog(@"resp %d",resp.errCode);
+    
+    /*
+     enum  WXErrCode {
+     WXSuccess           = 0,    成功
+     WXErrCodeCommon     = -1,  普通错误类型
+     WXErrCodeUserCancel = -2,    用户点击取消并返回
+     WXErrCodeSentFail   = -3,   发送失败
+     WXErrCodeAuthDeny   = -4,    授权失败
+     WXErrCodeUnsupport  = -5,   微信不支持
+     };
+     */
+    if ([resp isKindOfClass:[SendAuthResp class]]) {   //授权登录的类。
+        if (resp.errCode == 0) {  //成功。
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"WX_RESULT" object:resp];
+        }else{ //失败
+            
+        }
+    }
 }
-
 
 
 

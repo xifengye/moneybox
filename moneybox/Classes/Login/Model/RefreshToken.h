@@ -15,12 +15,15 @@
  var ExpireDate:NSDate?;
 */
 
-@interface Token : NSObject<NSCoding>
-@property(nonatomic,copy,readonly)NSString* token;
-@property(nonatomic,copy)NSString* CodeType;
-@property(nonatomic,assign)long long Expire;
-@property(nonatomic,copy)NSString* Value;
-@property(nonatomic,strong)NSDate* expireDate;
+@interface RefreshToken : NSObject<NSCoding>
+@property(nonatomic,copy)NSString* openid;
+@property(nonatomic,assign)long expires_in;//秒
+@property(nonatomic,copy)NSString* scope;
+@property(nonatomic,copy)NSString* refresh_token;
+@property(nonatomic,copy)NSString* access_token;
+
+@property(nonatomic,strong)NSDate* accessTokenExpireDate;
+@property(nonatomic,strong)NSDate* refreshTokenExpireDate;
 
 -(instancetype) initWithDictionary:(NSDictionary*)dictionary;
 +(instancetype) accountWithDictionary:(NSDictionary*)dictionary;

@@ -7,20 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Token.h"
+#import "LoginToken.h"
 
 @interface User : NSObject
 
-@property(nonatomic,copy)NSString* Mobile;
-@property(nonatomic,copy)NSString* password;
-@property(nonatomic,copy)NSString* mProfile;
-@property(nonatomic,copy)NSString* UserName;
-@property(nonatomic,copy)NSString* Mail;
-@property(nonatomic,copy)NSString* BirthDate;
-@property(nonatomic,copy)NSString* NickName;
-@property(nonatomic,copy)NSString* Gender;
-@property(nonatomic,assign)BOOL autoLogin;
-@property(nonatomic,strong)Token* userToken;
+
+@property(nonatomic,copy)NSString* nickname;
+@property(nonatomic,copy)NSString* unionid;
+@property(nonatomic,copy)NSString* privilege;
+@property(nonatomic,copy)NSString* province;
+@property(nonatomic,copy)NSString* openid;
+@property(nonatomic,copy)NSString* language;
+@property(nonatomic,copy)NSString* headimgurl;
+@property(nonatomic,copy)NSString* country;
+@property(nonatomic,copy)NSString* city;
+@property(nonatomic,assign)int sex;
 
 -(void)update:(User*)other;
 

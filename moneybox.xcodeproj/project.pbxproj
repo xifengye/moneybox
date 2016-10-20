@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		EB0405091DA4858B00CB027C /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB0405041DA4858B00CB027C /* libWeChatSDK.a */; };
 		EB04050A1DA4858B00CB027C /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = EB0405051DA4858B00CB027C /* README.txt */; };
+		EB0680541DB792380082FCAB /* LoginToken.m in Sources */ = {isa = PBXBuildFile; fileRef = EB0680531DB792380082FCAB /* LoginToken.m */; };
 		EB0F9C521DB5016700CBF52F /* NetAddressController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB0F9C511DB5016700CBF52F /* NetAddressController.m */; };
 		EB0F9C551DB5083700CBF52F /* NetAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = EB0F9C541DB5083700CBF52F /* NetAddress.m */; };
 		EB0F9C581DB52B6700CBF52F /* WalletRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = EB0F9C571DB52B6700CBF52F /* WalletRecord.m */; };
@@ -24,6 +25,8 @@
 		EB4D2F031DB6F6CD0036E7DB /* address.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB4D2F021DB6F6CD0036E7DB /* address.plist */; };
 		EB6109041DB362F800869F35 /* UIButton+MG.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6109031DB362F800869F35 /* UIButton+MG.m */; };
 		EB6109071DB3B38B00869F35 /* MBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6109061DB3B38B00869F35 /* MBUser.m */; };
+		EB7426321DB8427800AB5A4E /* BinaryData.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7426311DB8427800AB5A4E /* BinaryData.m */; };
+		EB7426351DB8493E00AB5A4E /* UIImageView+MG.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7426341DB8493E00AB5A4E /* UIImageView+MG.m */; };
 		EB7E4DEB1DB49215003C6B75 /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7E4DEA1DB49215003C6B75 /* Device.m */; };
 		EB825C9F1DB2508D0078E8E4 /* MGMeCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB825C9E1DB2508D0078E8E4 /* MGMeCellView.m */; };
 		EBD973321DA3AC5E00A1056E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBD973301DA3AC5E00A1056E /* Main.storyboard */; };
@@ -35,7 +38,7 @@
 		EBD975411DA3C0E100A1056E /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD9734D1DA3C0E100A1056E /* BaseViewController.m */; };
 		EBD975421DA3C0E100A1056E /* ModelBase.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD973501DA3C0E100A1056E /* ModelBase.m */; };
 		EBD975511DA3C0E100A1056E /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD973741DA3C0E100A1056E /* LoginController.m */; };
-		EBD975531DA3C0E100A1056E /* Token.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD973791DA3C0E100A1056E /* Token.m */; };
+		EBD975531DA3C0E100A1056E /* RefreshToken.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD973791DA3C0E100A1056E /* RefreshToken.m */; };
 		EBD975541DA3C0E100A1056E /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD9737B1DA3C0E100A1056E /* User.m */; };
 		EBD975551DA3C0E100A1056E /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD9737F1DA3C0E100A1056E /* MainController.m */; };
 		EBD975561DA3C0E100A1056E /* MGNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD973811DA3C0E100A1056E /* MGNavigationController.m */; };
@@ -125,8 +128,6 @@
 		EBD975CC1DA3C0E100A1056E /* UIImage+WebP.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD974D61DA3C0E100A1056E /* UIImage+WebP.m */; };
 		EBD975CD1DA3C0E100A1056E /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD974D81DA3C0E100A1056E /* UIImageView+WebCache.m */; };
 		EBD975CE1DA3C0E100A1056E /* MLJConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD974DA1DA3C0E100A1056E /* MLJConfig.m */; };
-		EBD975CF1DA3C0E100A1056E /* ActiveAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD974DD1DA3C0E100A1056E /* ActiveAccount.m */; };
-		EBD975D01DA3C0E100A1056E /* BinaryData.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD974DF1DA3C0E100A1056E /* BinaryData.m */; };
 		EBD975D11DA3C0E100A1056E /* MLJResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD974E11DA3C0E100A1056E /* MLJResponse.m */; };
 		EBD975D41DA3C0E100A1056E /* Base64ForSecurity.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD974E91DA3C0E100A1056E /* Base64ForSecurity.m */; };
 		EBD975D51DA3C0E100A1056E /* NSData+AES.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD974EC1DA3C0E100A1056E /* NSData+AES.m */; };
@@ -153,6 +154,8 @@
 		EB0405061DA4858B00CB027C /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
 		EB0405071DA4858B00CB027C /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		EB0405081DA4858B00CB027C /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		EB0680521DB792380082FCAB /* LoginToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginToken.h; sourceTree = "<group>"; };
+		EB0680531DB792380082FCAB /* LoginToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginToken.m; sourceTree = "<group>"; };
 		EB0F9C501DB5016700CBF52F /* NetAddressController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetAddressController.h; sourceTree = "<group>"; };
 		EB0F9C511DB5016700CBF52F /* NetAddressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetAddressController.m; sourceTree = "<group>"; };
 		EB0F9C531DB5083700CBF52F /* NetAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetAddress.h; sourceTree = "<group>"; };
@@ -174,6 +177,10 @@
 		EB6109031DB362F800869F35 /* UIButton+MG.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+MG.m"; sourceTree = "<group>"; };
 		EB6109051DB3B38B00869F35 /* MBUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBUser.h; sourceTree = "<group>"; };
 		EB6109061DB3B38B00869F35 /* MBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBUser.m; sourceTree = "<group>"; };
+		EB7426301DB8427800AB5A4E /* BinaryData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BinaryData.h; sourceTree = "<group>"; };
+		EB7426311DB8427800AB5A4E /* BinaryData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BinaryData.m; sourceTree = "<group>"; };
+		EB7426331DB8493E00AB5A4E /* UIImageView+MG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+MG.h"; sourceTree = "<group>"; };
+		EB7426341DB8493E00AB5A4E /* UIImageView+MG.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+MG.m"; sourceTree = "<group>"; };
 		EB7E4DE91DB49215003C6B75 /* Device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Device.h; sourceTree = "<group>"; };
 		EB7E4DEA1DB49215003C6B75 /* Device.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Device.m; sourceTree = "<group>"; };
 		EB825C9D1DB2508D0078E8E4 /* MGMeCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGMeCellView.h; sourceTree = "<group>"; };
@@ -194,8 +201,8 @@
 		EBD973501DA3C0E100A1056E /* ModelBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelBase.m; sourceTree = "<group>"; };
 		EBD973731DA3C0E100A1056E /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
 		EBD973741DA3C0E100A1056E /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
-		EBD973781DA3C0E100A1056E /* Token.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Token.h; sourceTree = "<group>"; };
-		EBD973791DA3C0E100A1056E /* Token.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Token.m; sourceTree = "<group>"; };
+		EBD973781DA3C0E100A1056E /* RefreshToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshToken.h; sourceTree = "<group>"; };
+		EBD973791DA3C0E100A1056E /* RefreshToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshToken.m; sourceTree = "<group>"; };
 		EBD9737A1DA3C0E100A1056E /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		EBD9737B1DA3C0E100A1056E /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		EBD9737E1DA3C0E100A1056E /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainController.h; sourceTree = "<group>"; };
@@ -375,10 +382,6 @@
 		EBD974D81DA3C0E100A1056E /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		EBD974D91DA3C0E100A1056E /* MLJConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLJConfig.h; sourceTree = "<group>"; };
 		EBD974DA1DA3C0E100A1056E /* MLJConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLJConfig.m; sourceTree = "<group>"; };
-		EBD974DC1DA3C0E100A1056E /* ActiveAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveAccount.h; sourceTree = "<group>"; };
-		EBD974DD1DA3C0E100A1056E /* ActiveAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveAccount.m; sourceTree = "<group>"; };
-		EBD974DE1DA3C0E100A1056E /* BinaryData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BinaryData.h; sourceTree = "<group>"; };
-		EBD974DF1DA3C0E100A1056E /* BinaryData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BinaryData.m; sourceTree = "<group>"; };
 		EBD974E01DA3C0E100A1056E /* MLJResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLJResponse.h; sourceTree = "<group>"; };
 		EBD974E11DA3C0E100A1056E /* MLJResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLJResponse.m; sourceTree = "<group>"; };
 		EBD974E81DA3C0E100A1056E /* Base64ForSecurity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64ForSecurity.h; sourceTree = "<group>"; };
@@ -572,12 +575,14 @@
 		EBD973771DA3C0E100A1056E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				EBD973781DA3C0E100A1056E /* Token.h */,
-				EBD973791DA3C0E100A1056E /* Token.m */,
+				EBD973781DA3C0E100A1056E /* RefreshToken.h */,
+				EBD973791DA3C0E100A1056E /* RefreshToken.m */,
 				EBD9737A1DA3C0E100A1056E /* User.h */,
 				EBD9737B1DA3C0E100A1056E /* User.m */,
 				EB6109051DB3B38B00869F35 /* MBUser.h */,
 				EB6109061DB3B38B00869F35 /* MBUser.m */,
+				EB0680521DB792380082FCAB /* LoginToken.h */,
+				EB0680531DB792380082FCAB /* LoginToken.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -703,6 +708,8 @@
 				EBD974321DA3C0E100A1056E /* UIImage+MG.m */,
 				EB6109021DB362F800869F35 /* UIButton+MG.h */,
 				EB6109031DB362F800869F35 /* UIButton+MG.m */,
+				EB7426331DB8493E00AB5A4E /* UIImageView+MG.h */,
+				EB7426341DB8493E00AB5A4E /* UIImageView+MG.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -944,10 +951,8 @@
 		EBD974DB1DA3C0E100A1056E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				EBD974DC1DA3C0E100A1056E /* ActiveAccount.h */,
-				EBD974DD1DA3C0E100A1056E /* ActiveAccount.m */,
-				EBD974DE1DA3C0E100A1056E /* BinaryData.h */,
-				EBD974DF1DA3C0E100A1056E /* BinaryData.m */,
+				EB7426301DB8427800AB5A4E /* BinaryData.h */,
+				EB7426311DB8427800AB5A4E /* BinaryData.m */,
 				EBD974E01DA3C0E100A1056E /* MLJResponse.h */,
 				EBD974E11DA3C0E100A1056E /* MLJResponse.m */,
 			);
@@ -1119,6 +1124,7 @@
 				TargetAttributes = {
 					EBD973201DA3AC5E00A1056E = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = ZKWL42JG74;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1170,7 +1176,6 @@
 				EBD975BE1DA3C0E100A1056E /* UzysWrapperPickerController.m in Sources */,
 				EBD975C01DA3C0E100A1056E /* NSData+ImageContentType.m in Sources */,
 				EBD975B51DA3C0E100A1056E /* MJRefreshFooterView.m in Sources */,
-				EBD975CF1DA3C0E100A1056E /* ActiveAccount.m in Sources */,
 				EBD975921DA3C0E100A1056E /* DAPageIndicatorView.m in Sources */,
 				EBD975A11DA3C0E100A1056E /* MBProgressHUD.m in Sources */,
 				EB0F9C581DB52B6700CBF52F /* WalletRecord.m in Sources */,
@@ -1211,6 +1216,7 @@
 				EBD975641DA3C0E100A1056E /* ProxyController.m in Sources */,
 				EBD975BA1DA3C0E100A1056E /* UzysAssetsViewCell.m in Sources */,
 				EBD9755A1DA3C0E100A1056E /* MGTabBar.m in Sources */,
+				EB7426321DB8427800AB5A4E /* BinaryData.m in Sources */,
 				EBD975E71DA3C0E100A1056E /* TreasureHuntController.m in Sources */,
 				EBD975D11DA3C0E100A1056E /* MLJResponse.m in Sources */,
 				EBD975CA1DA3C0E100A1056E /* UIImage+GIF.m in Sources */,
@@ -1241,7 +1247,6 @@
 				EBD975A91DA3C0E100A1056E /* NSObject+MJKeyValue.m in Sources */,
 				EBD975A21DA3C0E100A1056E /* MJArgument.m in Sources */,
 				EBD9759F1DA3C0E100A1056E /* MBProgressHUD+MJ.m in Sources */,
-				EBD975D01DA3C0E100A1056E /* BinaryData.m in Sources */,
 				EBD975941DA3C0E100A1056E /* DAPagesContainerTopBar.m in Sources */,
 				EBD975C51DA3C0E100A1056E /* SDWebImageDownloaderOperation.m in Sources */,
 				EBD975851DA3C0E100A1056E /* NSData+AES256.m in Sources */,
@@ -1261,6 +1266,7 @@
 				EBD975591DA3C0E100A1056E /* MGSearchBar.m in Sources */,
 				EBD975D61DA3C0E100A1056E /* SecurityUtil.m in Sources */,
 				EBD975ED1DA3C0E100A1056E /* SKUS.m in Sources */,
+				EB7426351DB8493E00AB5A4E /* UIImageView+MG.m in Sources */,
 				EBD975D91DA3C0E100A1056E /* HttpTool.m in Sources */,
 				EBD975411DA3C0E100A1056E /* BaseViewController.m in Sources */,
 				EBD975901DA3C0E100A1056E /* CycleScrollView.m in Sources */,
@@ -1271,6 +1277,7 @@
 				EBD975AA1DA3C0E100A1056E /* NSObject+MJMember.m in Sources */,
 				EBD975861DA3C0E100A1056E /* NSData+Base64.m in Sources */,
 				EB6109041DB362F800869F35 /* UIButton+MG.m in Sources */,
+				EB0680541DB792380082FCAB /* LoginToken.m in Sources */,
 				EBD975801DA3C0E100A1056E /* NSString+MG.m in Sources */,
 				EBD975881DA3C0E100A1056E /* NSString+AES256.m in Sources */,
 				EBD975401DA3C0E100A1056E /* BaseTableViewController.m in Sources */,
@@ -1284,7 +1291,7 @@
 				EBD975AE1DA3C0E100A1056E /* MJPhotoLoadingView.m in Sources */,
 				EBD975871DA3C0E100A1056E /* NSData+CommonCrypto.m in Sources */,
 				EBD9757F1DA3C0E100A1056E /* NSDate+MG.m in Sources */,
-				EBD975531DA3C0E100A1056E /* Token.m in Sources */,
+				EBD975531DA3C0E100A1056E /* RefreshToken.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1402,6 +1409,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = ZKWL42JG74;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/moneybox/Classes/Other/Library",
 					"$(inherited)",
@@ -1416,7 +1424,7 @@
 					"$(PROJECT_DIR)/MolijieIos/Classes/Other/Library",
 					"$(PROJECT_DIR)/weiChatSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ios.qianji.moneybox;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cnmolijie.MoliJie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1425,6 +1433,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = ZKWL42JG74;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/moneybox/Classes/Other/Library",
 					"$(inherited)",
@@ -1439,7 +1448,7 @@
 					"$(PROJECT_DIR)/MolijieIos/Classes/Other/Library",
 					"$(PROJECT_DIR)/weiChatSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ios.qianji.moneybox;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cnmolijie.MoliJie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

@@ -24,6 +24,9 @@ typedef void(^UIActionHandler)(UIAlertAction *action);
 
 #define SUGGEST_MAX_LEN 500
 
+#define WX_APP_ID   @"wxf2038589c0b3c685"
+#define WX_APP_SECRET   @"bc41af5ff896bd40dbe1d95512fdca24"
+
 
 #define alipay_partner  @"2088121324952881"
 #define alipay_seller  @"business_at_cnmolijie@outlook.com"

@@ -17,6 +17,8 @@
 #import "MLJConfig.h"
 #import "MBProgressHUD+MJ.h"
 #import "SettingController.h"
+#import "UIImageView+WebCache.h"
+#import "UIImageView+MG.h"
 
 
 
@@ -24,7 +26,9 @@
 
 @end
 
-@implementation MeController
+@implementation MeController{
+    MGMeCellView* _headerView;
+}
 
 - (instancetype)init
 {
@@ -44,6 +48,8 @@
 -(void)setupSettingView{
     MGMeCellView* headerView = [[MGMeCellView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, CELL_HEIGHT)];
      self.tableView.tableHeaderView = headerView;
+    _headerView = headerView;
+    [headerView.iconView circle:[UIColor whiteColor]];
     __block MeController* blockSelf = self;
 
     [self addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {
@@ -123,6 +129,11 @@
 
 -(void)goAppStore{
     NSLog(@"goAppStore");
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    _headerView.nameLabel.text = [AppDataMemory instance].wxUser.nickname;
+    [_headerView.iconView setImageWithURL:[NSURL URLWithString:[AppDataMemory instance].wxUser.headimgurl]];
 }
 
 

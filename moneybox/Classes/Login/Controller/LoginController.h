@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Token.h"
+#import "RefreshToken.h"
 #import "WXApi.h"
 
-@interface LoginController : UIViewController<UIScrollViewDelegate,WXApiDelegate>
+
+
+@interface LoginController : UIViewController<UIScrollViewDelegate>
 @property(nonatomic,retain) UIPageControl* pageControl;
 
 

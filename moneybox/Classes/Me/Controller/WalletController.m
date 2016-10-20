@@ -14,6 +14,7 @@
 #import "UIImageView+WebCache.h"
 #import "MJRefresh.h"
 #import "WalletRecord.h"
+#import "UIImageView+MG.h"
 
 
 @interface WalletController()<MJRefreshBaseViewDelegate>
@@ -67,7 +68,8 @@
         self.blanceView.text = [NSString stringWithFormat:@"%.2f元",mbUser.Bank];
         self.alreadyTakeCashView.text = [NSString stringWithFormat:@"累计已提现%.2f元",mbUser.S_Money];
         [self.iconView setImageWithURL:[NSURL URLWithString:mbUser.HeadPicUrl]];
-         [self.footerView beginRefreshing];
+        [self.iconView circle:MBBLUE_COLOR];
+        [self.footerView beginRefreshing];
     }];
 
 }
